@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Clutch</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <img src="images/logo.png" alt="Doctor Clutch Logo" class="logo"> <!-- Ensure the logo path is correct -->
+        <h2>Car Information Form</h2>
+        <form id="carForm">
+            <div class="form-step active" id="step-1">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+                <button type="button" class="next-btn" onclick="nextStep(2)">Next</button>
+            </div>
+            <div class="form-step" id="step-2">
+                <label for="number">Number:</label>
+                <input type="text" id="number" name="number" required>
+                <label for="carBrand">Car Brand:</label>
+                <input type="text" id="carBrand" name="carBrand" required>
+                <label for="carModel">Car Model:</label>
+                <input type="text" id="carModel" name="carModel" required>
+                <label for="year">Year of Manufacture:</label>
+                <input type="number" id="year" name="year" required>
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+        <div class="thank-you">
+            <h2>Thank you!</h2>
+            <p>We will contact you as soon as possible.</p>
+        </div>
+    </div>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxqXbgqJbARga43VxDcUQtUOvqHPw-InCGq-K6IpF1-_SbV2Sx0VVTO0MjRUyZIEUhL/exec';
+        const form = document.getElementById('carForm');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => {
+                    document.querySelector('.container').classList.add('hidden');
+                    document.querySelector('.thank-you').style.display = 'block';
+                })
+                .catch(error => console.error('Error!', error.message))
+        });
+
+        function nextStep(step) {
+            document.querySelectorAll('.form-step').forEach((element) => {
+                element.classList.remove('active');
+            });
+            document.getElementById('step-' + step).classList.add('active');
+        }
+    </script>
+</body>
+</html>

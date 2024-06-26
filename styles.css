@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('images/background.png') no-repeat center center fixed;
+    background-size: cover;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: -1;
+}
+.container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    z-index: 1;
+    position: relative;
+    max-width: 400px;
+    width: 100%;
+}
+h2 {
+    margin-bottom: 20px;
+}
+label {
+    display: block;
+    margin-top: 10px;
+    text-align: left;
+}
+input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+input[type="submit"], .next-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+input[type="submit"]:hover, .next-btn:hover {
+    background-color: #0056b3;
+}
+.logo {
+    width: 100px;
+    margin-bottom: 20px;
+}
+.form-step {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.form-step.active {
+    display: block;
+    opacity: 1;
+}
+.thank-you {
+    display: none;
+}
